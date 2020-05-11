@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Employee List</title>
@@ -39,8 +40,10 @@
     </tr>
     </tfoot>
 </table>
-
-<a href="employee-add" class="btn btn-primary"><b>Add Employee</b></a>
+<div>
+    <a href="employee-add" class="btn btn-primary"><b>Add Employee</b></a>
+    <a href=""  class="btn btn-success"><b>Switch to Department List</b></a>
+</div>
 </body>
 <script>
     $(document).ready(function () {
