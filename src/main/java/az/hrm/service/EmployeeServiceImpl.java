@@ -33,7 +33,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         columnMap.put(2, "first_name");
         columnMap.put(3, "last_name");
         columnMap.put(4, "salary");
-        List<Employee> employeeList = this.employeeRepo.getEmployeeList(start, length, (String)columnMap.getOrDefault(sortColumn, "employee_id"), sortDirection, searchValue);
+        List<Employee> employeeList = this.employeeRepo.getEmployeeList(start, length,columnMap.getOrDefault(sortColumn, "employee_id"), sortDirection, searchValue);
         Object[][] data = new Object[employeeList.size()][6];
 
         for(int i = 0; i < employeeList.size(); ++i) {

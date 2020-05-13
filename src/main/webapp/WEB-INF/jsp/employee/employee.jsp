@@ -17,8 +17,8 @@
 </head>
 <body>
 <section class="content">
-    <div class="container-fluid">
-        <div class="row justify-content-center">
+    <div class="container-fluid ">
+        <div class="row h-100 justify-content-center align-items-center">
             <div class="col-md-3 ">
                 <div class="card card-primary card-outline">
                     <div class="card-body box-profile">
@@ -51,8 +51,10 @@
                             </ul>
                             <a href="employee-edit?id=${employeeView.id}"
                                class="btn btn-primary btn-block"><b>Edit</b></a>
-                            <a href="<c:url value="/employee/"/>" class="btn btn-secondary btn-block"><b>Back to list</b></a>
-                            <a href="<c:url value="/employee/employee-delete?id=${employeeView.id}" />" class="btn btn-danger btn-block">Delete</a>
+                            <a href="<c:url value="/employee/"/>" class="btn btn-secondary btn-block"><b>Back to
+                                list</b></a>
+                            <a href="<c:url value="/employee/employee-delete?id=${employeeView.id}" />"
+                               class="btn btn-danger btn-block">Delete</a>
                         </form>
                     </div>
                 </div>

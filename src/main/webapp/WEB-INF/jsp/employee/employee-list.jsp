@@ -42,7 +42,7 @@
 </table>
 <div>
     <a href="employee-add" class="btn btn-primary"><b>Add Employee</b></a>
-    <a href=""  class="btn btn-success"><b>Switch to Department List</b></a>
+    <a href="" class="btn btn-success"><b>Switch to Department List</b></a>
 </div>
 </body>
 <script>

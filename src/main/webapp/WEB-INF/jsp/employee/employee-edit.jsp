@@ -19,7 +19,7 @@
            modelAttribute="employeeForm">
     <section class="content">
         <div class="container-fluid">
-            <div class="row justify-content-center">
+            <div class="row h-100 justify-content-center align-items-center">
                 <div class="col-md-3">
                     <div class="card card-primary">
                         <div class="card-header card-primary">
@@ -85,11 +85,11 @@
 </form:form>
 
 <script>
-    $("#errorMessage").onclick{
-        function x() {
-
-        }
-    }
+    // $("#errorMessage").onclick{
+    //     function x() {
+    //
+    //     }
+    // }
 </script>
 </body>
 </html>
