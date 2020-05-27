@@ -1,10 +1,10 @@
-package az.hrm.service;
+package az.hrm.service.Employee;
 
 
 
 import az.hrm.model.DataTableResponse;
 import az.hrm.model.Employee;
-import az.hrm.repo.EmployeeRepoJDBCImpl;
+import az.hrm.repo.employee.EmployeeRepoJDBCImpl;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

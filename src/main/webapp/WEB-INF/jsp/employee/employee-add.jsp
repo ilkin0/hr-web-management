@@ -26,10 +26,6 @@
                         </div>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="id">Employee ID:</label>
-                                    <input type="text" class="form-control" name="id" id="id">
-                                </div>
-                                <div class="form-group">
                                     <label for="jobId">Job ID:</label>
                                     <input type="text" class="form-control" name="jobId" id="jobId">
                                 </div>

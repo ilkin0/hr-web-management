@@ -3,8 +3,8 @@ package az.hrm.controller;
 import az.hrm.form.EmployeeForm;
 import az.hrm.model.DataTableResponse;
 import az.hrm.model.Employee;
-import az.hrm.repo.EmployeeRepo;
-import az.hrm.service.EmployeeService;
+import az.hrm.repo.employee.EmployeeRepo;
+import az.hrm.service.Employee.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -44,7 +44,7 @@ public class EmployeeController {
                                                   @RequestParam(name = "order[0][column]") int sortColumn,
                                                   @RequestParam(name = "order[0][dir]") String sortDirection,
                                                   @RequestParam(name = "search[value]") String searchValue) {
-        return this.employeeService.getEmployeeDataTable(draw, start, length, sortColumn, sortDirection, searchValue);
+        return employeeService.getEmployeeDataTable(draw, start, length, sortColumn, sortDirection, searchValue);
     }
 
     @GetMapping({"/employee-view"})
@@ -114,17 +114,15 @@ public class EmployeeController {
     }
 
     @PostMapping({"employee-add"})
-    public ModelAndView addeEmployee(@RequestParam(name = "id") long id,
-                                     @RequestParam(name = "firstName") String firstName,
+    public ModelAndView addeEmployee(@RequestParam(name = "firstName") String firstName,
                                      @RequestParam(name = "lastName") String lastName,
                                      @RequestParam(name = "email") String email,
                                      @RequestParam(name = "phoneNumber") String phoneNumber,
                                      @RequestParam(name = "hireDate") Date hireDate,
                                      @RequestParam(name = "jobId") String jobId,
                                      @RequestParam(name = "salary") BigDecimal salary) {
-        ModelAndView modelAndView = new ModelAndView("redirect://employee/employee-view?id=" + id);
+
         Employee employee = new Employee();
-        employee.setId(id);
         employee.setFirstName(firstName);
         employee.setLastName(lastName);
         employee.setEmail(email);
@@ -132,8 +130,8 @@ public class EmployeeController {
         employee.setHireDate(hireDate);
         employee.setJobID(jobId);
         employee.setSalary(salary);
-        employeeRepo.addEmployee(employee);
-        return modelAndView;
+        employee = employeeRepo.addEmployee(employee);
+        return new ModelAndView("redirect://employee/employee-view?id=" + employee.getId());
     }
 
     @GetMapping({"employee-delete"})

@@ -10,11 +10,9 @@
 <html>
 <head>
     <title>Employee List</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
-    <script type="text/javascript" charset="utf8"
-            src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+
 </head>
 <body>
 <h2>Employee List</h2>
@@ -42,8 +40,12 @@
 </table>
 <div>
     <a href="employee-add" class="btn btn-primary"><b>Add Employee</b></a>
-    <a href="" class="btn btn-success"><b>Switch to Department List</b></a>
+    <input type="button" class="btn btn-success" id="switchDepartment" value="Switch to Department List" >
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+
 </body>
 <script>
     $(document).ready(function () {
@@ -53,5 +55,9 @@
             "ajax": "employee-list-ajax"
         });
     });
+
+    $('#switchDepartment').click(function () {
+        location.href = '<%=request.getContextPath()%>/department/'
+    })
 </script>
 </html>

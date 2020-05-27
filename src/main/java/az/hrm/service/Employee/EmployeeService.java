@@ -1,4 +1,4 @@
-package az.hrm.service;
+package az.hrm.service.Employee;
 
 import az.hrm.model.DataTableResponse;
 

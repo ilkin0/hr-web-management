@@ -1,4 +1,4 @@
-package az.hrm.repo;
+package az.hrm.repo.employee;
 
 
 import az.hrm.model.Employee;
@@ -14,7 +14,7 @@ public interface EmployeeRepo {
 
     void deleteEmployeeById(long id);
 
-    void addEmployee(Employee employee);
+    Employee addEmployee(Employee employee);
 
     long getEmployeeCount();
 
