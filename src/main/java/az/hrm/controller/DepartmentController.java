@@ -1,6 +1,7 @@
 package az.hrm.controller;
 
 import az.hrm.entity.DataTableResponse;
+import az.hrm.repo.department.DepartmentRepo;
 import az.hrm.repo.department.impl.DepartmentRepoJDBCImpl;
 import az.hrm.service.Department.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class DepartmentController {
     @Autowired
     private DepartmentService departmentService;
     @Autowired
-    private DepartmentRepoJDBCImpl departmentRepoJDBC;
+    private DepartmentRepo departmentRepo;
 
     @GetMapping("/")
     public String index(){
