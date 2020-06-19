@@ -1,6 +1,6 @@
 package az.hrm.repo.department;
 
-import az.hrm.model.Department;
+import az.hrm.entity.Department;
 
 import java.util.List;
 

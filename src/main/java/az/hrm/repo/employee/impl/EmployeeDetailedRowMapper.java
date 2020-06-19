@@ -1,14 +1,14 @@
-package az.hrm.repo.employee;
+package az.hrm.repo.employee.impl;
 
-import az.hrm.model.Employee;
+import az.hrm.entity.Employee;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
 @Component
-public class EmployeeRowMapper implements RowMapper<Employee> {
-    public EmployeeRowMapper() {
+public class EmployeeDetailedRowMapper implements RowMapper<Employee> {
+    public EmployeeDetailedRowMapper() {
     }
 
     public Employee mapRow(ResultSet resultSet, int i) throws SQLException {
@@ -17,6 +17,9 @@ public class EmployeeRowMapper implements RowMapper<Employee> {
         employee.setFirstName(resultSet.getString("first_name"));
         employee.setLastName(resultSet.getString("last_name"));
         employee.setSalary(resultSet.getBigDecimal("salary"));
+        employee.setEmail(resultSet.getString("email"));
+        employee.setPhoneNumber(resultSet.getString("phone_numeric"));
+        employee.setJobID(resultSet.getString("job_id"));
         return employee;
     }
 }

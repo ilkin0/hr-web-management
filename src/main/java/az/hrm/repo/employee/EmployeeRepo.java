@@ -1,7 +1,7 @@
 package az.hrm.repo.employee;
 
 
-import az.hrm.model.Employee;
+import az.hrm.entity.Employee;
 import java.util.List;
 import java.util.Optional;
 

@@ -1,22 +1,26 @@
-package az.hrm.service.Employee;
+package az.hrm.service.Employee.impl;
 
 
+import az.hrm.entity.DataTableResponse;
+import az.hrm.entity.Employee;
+import az.hrm.repo.employee.impl.EmployeeRepoJDBCImpl;
 
-import az.hrm.model.DataTableResponse;
-import az.hrm.model.Employee;
-import az.hrm.repo.employee.EmployeeRepoJDBCImpl;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import az.hrm.service.Employee.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-    @Autowired
+
     EmployeeRepoJDBCImpl employeeRepo;
 
-    public EmployeeServiceImpl() {
+    @Autowired
+    public EmployeeServiceImpl(EmployeeRepoJDBCImpl employeeRepo) {
+        this.employeeRepo = employeeRepo;
     }
 
     public DataTableResponse getEmployeeDataTable(String draw, int start, int length, int sortColumn, String sortDirection, String searchValue) {
@@ -33,10 +37,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         columnMap.put(2, "first_name");
         columnMap.put(3, "last_name");
         columnMap.put(4, "salary");
-        List<Employee> employeeList = this.employeeRepo.getEmployeeList(start, length,columnMap.getOrDefault(sortColumn, "employee_id"), sortDirection, searchValue);
+        List<Employee> employeeList = this.employeeRepo.getEmployeeList(start, length, columnMap.getOrDefault(sortColumn, "employee_id"), sortDirection, searchValue);
         Object[][] data = new Object[employeeList.size()][6];
 
-        for(int i = 0; i < employeeList.size(); ++i) {
+        for (int i = 0; i < employeeList.size(); ++i) {
             data[i][0] = i + 1;
             data[i][1] = (employeeList.get(i)).getId();
             data[i][2] = (employeeList.get(i)).getFirstName();

@@ -1,12 +1,6 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: ilkin
-  Date: 08.04.20
-  Time: 13:20
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
     <title>Update Employee Information</title>
@@ -16,7 +10,7 @@
 </head>
 <body>
 <form:form method="post" role="form" action="${pageContext.request.contextPath}/employee/employee-edit"
-           modelAttribute="employeeForm">
+           modelAttribute="employeeDTO">
     <section class="content">
         <div class="container-fluid">
             <div class="row h-100 justify-content-center align-items-center">
@@ -29,52 +23,59 @@
                             <div class="form-group">
                                 <form:hidden path="id"/>
                             </div>
-                            <div class="form-group">
-                                <label for="first-name">First Name:</label>
-                                <form:input path="firstName" id="first-name" cssClass="form-control"/>
-                                <div class="alert alert-danger" role="alert" style="display: none" id="errorMessage">
-                                    <form:errors path="firstName" role="alert"/>
+
+                            <spring:bind path="firstName">
+                                <div class="form-group ${status.error ? 'has-error' : ''}">
+                                    <label for="first-name">First Name:</label>
+                                    <form:input path="firstName" id="first-name" cssClass="form-control"/>
+                                    <form:errors path="firstName"/>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="last-name">Last Name:</label>
-                                <form:input path="lastName" id="last-name" cssClass="form-control"/>
-                                <div class="alert alert-danger" role="alert" style="display: none" id="errorMessage">
-                                    <form:errors path="lastName" role="alert"/>
+                            </spring:bind>
+
+                            <spring:bind path="lastName">
+                                <div class="form-group">
+                                    <label for="last-name">Last Name:</label>
+                                    <form:input path="lastName" id="last-name" cssClass="form-control"/>
+                                    <form:errors path="lastName"/>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email:</label>
-                                <form:input path="email" id="email" cssClass="form-control"/>
-                                <div class="alert alert-danger" role="alert" style="display: none" id="errorMessage">
-                                    <form:errors path="email" role="alert"/>
+                            </spring:bind>
+
+                            <spring:bind path="email">
+                                <div class="form-group">
+                                    <label for="email">Email:</label>
+                                    <form:input path="email" id="email" cssClass="form-control"/>
+                                    <form:errors path="email"/>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="phoneNumber">Phone Number:</label>
-                                <form:input path="phoneNumber" id="phoneNumber" cssClass="form-control"/>
-                                <div class="alert alert-danger" role="alert" style="display: none" id="errorMessage">
-                                    <form:errors path="phoneNumber" role="alert"/>
+                            </spring:bind>
+
+                            <spring:bind path="phoneNumber">
+                                <div class="form-group">
+                                    <label for="phoneNumber">Phone Number:</label>
+                                    <form:input path="phoneNumber" id="phoneNumber" cssClass="form-control"/>
+                                    <form:errors path="phoneNumber"/>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="salary">Salary:</label>
-                                <form:input path="salary" id="salary" cssClass="form-control"/>
-                                <div class="alert alert-danger" role="alert" style="display: none" id="errorMessage">
-                                    <form:errors path="salary" role="alert"/>
+                            </spring:bind>
+
+                            <spring:bind path="jobID">
+                                <div class="form-group">
+                                    <label for="jobID">JobID</label>
+                                    <form:input path="jobID" id="jobID" cssClass="form-control"/>
+                                    <form:errors path="jobID"/>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="jobID">JobID</label>
-                                <form:input path="jobID" id="jobID" cssClass="form-control"/>
-                                <div class="alert alert-danger" role="alert" style="display: none" id="errorMessage">
-                                    <form:errors path="jobID" role="alert"/>
+                            </spring:bind>
+
+                            <spring:bind path="salary">
+                                <div class="form-group">
+                                    <label for="salary">Salary:</label>
+                                    <form:input path="salary" id="salary" cssClass="form-control"/>
+                                    <form:errors path="salary"/>
                                 </div>
-                            </div>
+                            </spring:bind>
+
                         </div>
                         <div class="card-footer">
                             <input class="btn btn-success btn-block" type="submit" value="Save">
-                            <a href="employee-view?id=${employeeForm.id}"
+                            <a href="employee-view?id=${employeeDTO.id}"
                                class="btn btn-danger btn-block"><b>Cancel</b></a>
                         </div>
                     </div>
@@ -84,12 +85,5 @@
     </section>
 </form:form>
 
-<script>
-    // $("#errorMessage").onclick{
-    //     function x() {
-    //
-    //     }
-    // }
-</script>
 </body>
 </html>

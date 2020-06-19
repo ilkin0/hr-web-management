@@ -2,7 +2,7 @@ package az.hrm.repo;
 
 public class SqlQuery {
     public final static String GET_EMPLOYEE_LIST = "select employee_id, first_name, last_name, salary  from employees " +
-            " order by %SORT_COLUMN% %SORT_DIRECTION% ";
+            " order by %SORT_COLUMN% %SORT_DIRECTION%  limit :length offset :start";
 
     public final static String GET_EMPLOYEE_LIST_FILTERED = "select employee_id, first_name, last_name, salary " +
             " from employees\n where lower(concat(employee_id, first_name, last_name, salary)) like :searchValue " +

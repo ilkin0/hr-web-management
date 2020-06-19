@@ -1,8 +1,9 @@
-package az.hrm.service.Department;
+package az.hrm.service.Department.impl;
 
-import az.hrm.model.DataTableResponse;
-import az.hrm.model.Department;
-import az.hrm.repo.department.DepartmentRepoJDBCImpl;
+import az.hrm.entity.DataTableResponse;
+import az.hrm.entity.Department;
+import az.hrm.repo.department.impl.DepartmentRepoJDBCImpl;
+import az.hrm.service.Department.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,34 +14,37 @@ import java.util.Map;
 @Service
 public class DepartmentServiceImpl implements DepartmentService {
 
-    @Autowired
     private DepartmentRepoJDBCImpl departmentRepoJDBC;
 
+    @Autowired
+    public DepartmentServiceImpl(DepartmentRepoJDBCImpl departmentRepoJDBC) {
+        this.departmentRepoJDBC = departmentRepoJDBC;
+    }
 
     @Override
     public DataTableResponse getDepartmentDataTable(String draw, int start, int length, int sortColumn, String sortDirection, String searchValue) {
-       DataTableResponse dataTableResponse = new DataTableResponse();
+        DataTableResponse dataTableResponse = new DataTableResponse();
 
-       dataTableResponse.setRecordsTotal(departmentRepoJDBC.getDepartmentCount());
+        dataTableResponse.setRecordsTotal(departmentRepoJDBC.getDepartmentCount());
 
-       if (searchValue !=null && !searchValue.isEmpty()){
-           dataTableResponse.setRecordsFiltered(departmentRepoJDBC.getDepartmentFilteredCount(searchValue));
-       }else {
-           dataTableResponse.setRecordsFiltered(dataTableResponse.getRecordsTotal());
-       }
+        if (searchValue != null && !searchValue.isEmpty()) {
+            dataTableResponse.setRecordsFiltered(departmentRepoJDBC.getDepartmentFilteredCount(searchValue));
+        } else {
+            dataTableResponse.setRecordsFiltered(dataTableResponse.getRecordsTotal());
+        }
 
         Map<Integer, String> columnMap = new HashMap();
         columnMap.put(1, "department_id");
         columnMap.put(2, "department_name");
         columnMap.put(3, "manager_id");
         columnMap.put(4, "location_id");
-        List<Department> departmentList = departmentRepoJDBC.getDepartmentList(start, length,columnMap.getOrDefault(sortColumn, "department_id"),
+        List<Department> departmentList = departmentRepoJDBC.getDepartmentList(start, length, columnMap.getOrDefault(sortColumn, "department_id"),
                 sortDirection, searchValue);
 
         Object[][] data = new Object[departmentList.size()][6];
 
-        for (int i = 0; i <departmentList.size(); ++i){
-            data[i][0] = i+1;
+        for (int i = 0; i < departmentList.size(); ++i) {
+            data[i][0] = i + 1;
             data[i][1] = departmentList.get(i).getDepartmentID();
             data[i][2] = departmentList.get(i).getDepartmentName();
             data[i][3] = departmentList.get(i).getManagerID();

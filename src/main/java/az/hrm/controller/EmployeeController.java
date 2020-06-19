@@ -1,8 +1,8 @@
 package az.hrm.controller;
 
-import az.hrm.form.EmployeeForm;
-import az.hrm.model.DataTableResponse;
-import az.hrm.model.Employee;
+import az.hrm.entity.EmployeeDTO;
+import az.hrm.entity.DataTableResponse;
+import az.hrm.entity.Employee;
 import az.hrm.repo.employee.EmployeeRepo;
 import az.hrm.service.Employee.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.math.BigDecimal;
@@ -38,12 +39,13 @@ public class EmployeeController {
 
     @GetMapping({"/employee-list-ajax"})
     @ResponseBody
-    public DataTableResponse getEmployeeDataTable(@RequestParam(name = "draw") String draw,
-                                                  @RequestParam(name = "start") int start,
-                                                  @RequestParam(name = "length") int length,
-                                                  @RequestParam(name = "order[0][column]") int sortColumn,
-                                                  @RequestParam(name = "order[0][dir]") String sortDirection,
-                                                  @RequestParam(name = "search[value]") String searchValue) {
+    public DataTableResponse getEmployeeDataTable(
+            @RequestParam(name = "draw") String draw,
+            @RequestParam(name = "start") int start,
+            @RequestParam(name = "length") int length,
+            @RequestParam(name = "order[0][column]") int sortColumn,
+            @RequestParam(name = "order[0][dir]") String sortDirection,
+            @RequestParam(name = "search[value]") String searchValue) {
         return employeeService.getEmployeeDataTable(draw, start, length, sortColumn, sortDirection, searchValue);
     }
 
@@ -67,10 +69,10 @@ public class EmployeeController {
         Optional<Employee> optionalEmployee = employeeRepo.getEmployeeById(id);
         if (optionalEmployee.isPresent()) {
             Employee employee = optionalEmployee.get();
-            EmployeeForm employeeForm = parseToForm(employee);
+            EmployeeDTO employeeDTO = parseToForm(employee);
 
             Map<String, Object> map = new HashMap<>();
-            map.put("employeeForm", employeeForm);
+            map.put("employeeDTO", employeeDTO);
             map.put("id", id);
             modelAndView.addAllObjects(map);
         }
@@ -78,8 +80,8 @@ public class EmployeeController {
         return modelAndView;
     }
 
-    private static EmployeeForm parseToForm(Employee employee){
-        EmployeeForm employeeForm = new EmployeeForm();
+    private static EmployeeDTO parseToForm(Employee employee) {
+        EmployeeDTO employeeForm = new EmployeeDTO();
 
         employeeForm.setId(String.valueOf(employee.getId()));
         employeeForm.setFirstName(employee.getFirstName());
@@ -95,15 +97,20 @@ public class EmployeeController {
 
     @PostMapping({"/employee-edit"})
     public ModelAndView saveEmployee(
-            @ModelAttribute("employeeForm") @Valid EmployeeForm employeeForm,
-            BindingResult validationResult
+            @ModelAttribute("employeeDTO") @Valid EmployeeDTO employeeForm,
+            BindingResult validationResult,
+            RedirectAttributes redirectAttributes
+
     ) {
         ModelAndView modelAndView = new ModelAndView();
 
-        if (validationResult.hasErrors()){
+        if (validationResult.hasErrors()) {
             modelAndView.setViewName("employee/employee-edit");
+            redirectAttributes.addFlashAttribute("errorMessage", "Something went wrong, try again");
         } else {
             modelAndView.setViewName("redirect:/employee/employee");
+            redirectAttributes.addFlashAttribute("successMessage", "All done");
+
         }
         return modelAndView;
     }
@@ -114,13 +121,14 @@ public class EmployeeController {
     }
 
     @PostMapping({"employee-add"})
-    public ModelAndView addeEmployee(@RequestParam(name = "firstName") String firstName,
-                                     @RequestParam(name = "lastName") String lastName,
-                                     @RequestParam(name = "email") String email,
-                                     @RequestParam(name = "phoneNumber") String phoneNumber,
-                                     @RequestParam(name = "hireDate") Date hireDate,
-                                     @RequestParam(name = "jobId") String jobId,
-                                     @RequestParam(name = "salary") BigDecimal salary) {
+    public ModelAndView addEmployee(
+            @RequestParam(name = "firstName") String firstName,
+            @RequestParam(name = "lastName") String lastName,
+            @RequestParam(name = "email") String email,
+            @RequestParam(name = "phoneNumber") String phoneNumber,
+            @RequestParam(name = "hireDate") Date hireDate,
+            @RequestParam(name = "jobId") String jobId,
+            @RequestParam(name = "salary") BigDecimal salary) {
 
         Employee employee = new Employee();
         employee.setFirstName(firstName);

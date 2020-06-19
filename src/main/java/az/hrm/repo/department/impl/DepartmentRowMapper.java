@@ -1,6 +1,6 @@
-package az.hrm.repo.department;
+package az.hrm.repo.department.impl;
 
-import az.hrm.model.Department;
+import az.hrm.entity.Department;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 

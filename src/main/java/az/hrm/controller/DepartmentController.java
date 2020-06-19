@@ -1,7 +1,7 @@
 package az.hrm.controller;
 
-import az.hrm.model.DataTableResponse;
-import az.hrm.repo.department.DepartmentRepoJDBCImpl;
+import az.hrm.entity.DataTableResponse;
+import az.hrm.repo.department.impl.DepartmentRepoJDBCImpl;
 import az.hrm.service.Department.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
