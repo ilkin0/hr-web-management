@@ -26,7 +26,7 @@
                         <div class="text-center">
                             <strong><i class="fa fa-user fa-5x"></i></strong>
                         </div>
-                        <form action="employee-edit" method="post">
+                        <form action="<c:url value="/employee/employee-edit"/>" method="post">
 
                             <h3 class="profile-username text-center">${employeeView.firstName} ${employeeView.lastName}</h3>
 
@@ -50,7 +50,7 @@
                                     <b>Salary</b> <a class="float-right">${employeeView.salary}</a>
                                 </li>
                             </ul>
-                            <a href="employee-edit?id=${employeeView.id}"
+                            <a href="<c:url value="/employee/employee-edit?id=${employeeView.id}"/>"
                                class="btn btn-primary btn-block"><b>Edit</b></a>
                             <a href="<c:url value="/employee/"/>" class="btn btn-secondary btn-block"><b>Back to
                                 list</b></a>

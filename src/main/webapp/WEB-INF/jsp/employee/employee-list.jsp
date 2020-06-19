@@ -39,8 +39,10 @@
     </tfoot>
 </table>
 <div>
-    <a href="employee-add" class="btn btn-primary"><b>Add Employee</b></a>
-    <input type="button" class="btn btn-success" id="switchDepartment" value="Switch to Department List" >
+    <a class="btn btn-primary" href="${pageContext.request.contextPath}/employee/employee-add" role="button">Add New
+        Employee</a>
+    <a class="btn btn-success" href="${pageContext.request.contextPath}/department/" role="button">Switch to Department
+        List</a>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -56,8 +58,5 @@
         });
     });
 
-    $('#switchDepartment').click(function () {
-        location.href = '<%=request.getContextPath()%>/department/'
-    })
 </script>
 </html>

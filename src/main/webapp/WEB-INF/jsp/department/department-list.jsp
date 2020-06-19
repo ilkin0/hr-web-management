@@ -41,7 +41,8 @@
 
 <div>
     <a href="#" class="btn btn-primary"><b>Add Department</b></a>
-    <input type="button" class="btn btn-success" id="switchEmployee" value="Switch to Employee List" >
+    <a class="btn btn-success" href="${pageContext.request.contextPath}/employee/" role="button">Switch to Employee
+        List</a>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -55,10 +56,6 @@
             "ajax": "department-list-ajax"
         });
     });
-
-    $('#switchEmployee').click(function () {
-        location.href = '<%=request.getContextPath()%>/employee/'
-    })
 </script>
 </body>
 </html>

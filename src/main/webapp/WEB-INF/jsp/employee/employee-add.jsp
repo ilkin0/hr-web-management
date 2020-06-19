@@ -1,11 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: ilkin
-  Date: 08.04.20
-  Time: 13:20
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -15,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body>
-<form method="post" action="employee-add">
+<form method="post" action="<c:url value="/employee/employee-add"/>">
     <section class="content">
         <div class="container-fluid">
             <div class="row h-100 justify-content-center align-items-center">

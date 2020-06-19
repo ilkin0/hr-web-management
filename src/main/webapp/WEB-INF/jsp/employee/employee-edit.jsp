@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Update Employee Information</title>
@@ -75,7 +76,7 @@
                         </div>
                         <div class="card-footer">
                             <input class="btn btn-success btn-block" type="submit" value="Save">
-                            <a href="employee-view?id=${employeeDTO.id}"
+                            <a href="<c:url value="/employee/employee-view?id=${employeeDTO.id}"/>"
                                class="btn btn-danger btn-block"><b>Cancel</b></a>
                         </div>
                     </div>
