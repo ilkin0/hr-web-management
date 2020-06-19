@@ -1,2 +1,3 @@
 # HR Web Management system
-Human Resource Web Management system build on Java, Spring-boot.
+
+ Build on Java, Spring-boot. Used Spring boot with MVC, Bean and Spring validations, PostgreSql configuration, MVC structure, etc.
