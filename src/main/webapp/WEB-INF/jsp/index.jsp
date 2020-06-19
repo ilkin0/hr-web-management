@@ -13,5 +13,6 @@
 <body>
 <h1>Welcome to Human Resource Web Management Application</h1>
 <a href="${pageContext.request.contextPath}/employee/">Employee List</a>
+<a href="${pageContext.request.contextPath}/department/">Department List</a>
 </body>
 </html>
