@@ -139,7 +139,7 @@ public class EmployeeController {
         employee.setJobID(jobId);
         employee.setSalary(salary);
         employee = employeeRepo.addEmployee(employee);
-        return new ModelAndView("redirect://employee/employee-view?id=" + employee.getId());
+        return new ModelAndView("redirect:/employee/employee-view?id=" + employee.getId());
     }
 
     @GetMapping({"employee-delete"})

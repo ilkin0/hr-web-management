@@ -2,8 +2,11 @@ package az.hrm.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import java.util.Locale;
 
@@ -11,15 +14,19 @@ import java.util.Locale;
 public class ApplicationConfiguration {
 
     @Bean
-    public ResourceBundleMessageSource messageSource() {
-
-        ResourceBundleMessageSource source = new ResourceBundleMessageSource();
-        source.setBasename("static/messages/validation");
-        source.setDefaultLocale(new Locale("az"));
+    public ReloadableResourceBundleMessageSource messageSource() {
+        ReloadableResourceBundleMessageSource source = new ReloadableResourceBundleMessageSource();
+        source.setBasename("classpath:messages/validation");
         source.setUseCodeAsDefaultMessage(true);
         source.setDefaultEncoding("UTF-8");
         return source;
+    }
 
+    @Bean
+    public LocaleResolver localeResolver() {
+        SessionLocaleResolver localeResolver = new SessionLocaleResolver();
+        localeResolver.setDefaultLocale(new Locale("az"));
+        return localeResolver;
     }
 
 
