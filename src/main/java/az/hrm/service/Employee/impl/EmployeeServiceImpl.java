@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
-    EmployeeRepoJDBCImpl employeeRepo;
+    private final EmployeeRepoJDBCImpl employeeRepo;
 
     @Autowired
     public EmployeeServiceImpl(EmployeeRepoJDBCImpl employeeRepo) {
@@ -32,7 +32,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             dataTableResponse.setRecordsFiltered(dataTableResponse.getRecordsTotal());
         }
 
-        Map<Integer, String> columnMap = new HashMap();
+        Map<Integer, String> columnMap = new HashMap<>();
         columnMap.put(1, "employee_id");
         columnMap.put(2, "first_name");
         columnMap.put(3, "last_name");

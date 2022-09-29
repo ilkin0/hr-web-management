@@ -14,7 +14,7 @@ import java.util.Map;
 @Service
 public class DepartmentServiceImpl implements DepartmentService {
 
-    private DepartmentRepoJDBCImpl departmentRepoJDBC;
+    private final DepartmentRepoJDBCImpl departmentRepoJDBC;
 
     @Autowired
     public DepartmentServiceImpl(DepartmentRepoJDBCImpl departmentRepoJDBC) {
@@ -33,7 +33,7 @@ public class DepartmentServiceImpl implements DepartmentService {
             dataTableResponse.setRecordsFiltered(dataTableResponse.getRecordsTotal());
         }
 
-        Map<Integer, String> columnMap = new HashMap();
+        Map<Integer, String> columnMap = new HashMap<>();
         columnMap.put(1, "department_id");
         columnMap.put(2, "department_name");
         columnMap.put(3, "manager_id");
